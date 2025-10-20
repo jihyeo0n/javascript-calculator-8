@@ -37,7 +37,7 @@ class App {
 
   validateNumbers(numbers) {
     numbers.forEach((num) => {
-      if (isNaN(num) || num < 0) {
+      if (isNaN(num) || !Number.isInteger(num) || num <= 0) {
         throw new Error("잘못된 입력입니다. 양수만 입력해 주세요.");
       }
     });
