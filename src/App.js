@@ -3,9 +3,11 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 class App {
   async run() {
     try {
-      const input = await MissionUtils.Console.readLineAsync(
+      let input = await MissionUtils.Console.readLineAsync(
         "덧셈할 문자열을 입력해 주세요. \n"
       );
+
+      input = input.replace("\\n", "\n");
       let result = "";
 
       if (input === "") result = 0;
@@ -14,8 +16,8 @@ class App {
 
         this.validateNumbers(numbers);
         result = numbers.reduce((acc, cur) => acc + cur, 0);
-      } else if (input.startsWith("//") && input.includes("\\n")) {
-        const [delimiterPart, numbersPart] = input.split("\\n");
+      } else if (input.startsWith("//") && input.includes("\n")) {
+        const [delimiterPart, numbersPart] = input.split("\n");
         const customDelimiter = delimiterPart.slice(2);
         const numbers = numbersPart.split(customDelimiter).map(Number);
 
